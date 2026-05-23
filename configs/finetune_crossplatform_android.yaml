@@ -1,0 +1,38 @@
+data:
+  train_path: data/processed/crossplatform_android_train.tsv
+  valid_path: data/processed/crossplatform_android_valid.tsv
+  test_path: data/processed/crossplatform_android_test.tsv
+  vocab_path: data/processed/vocab.txt
+
+model:
+  name: HPTF
+  config_path: configs/bert_base_config.json
+  classifier_arch: flowsem_mae
+  pretrained_checkpoint: checkpoints/pretrain/pytorch_model.bin
+  max_seq_length: 128
+  packet_token_layers: 1
+  packet_flow_layers: 2
+  field_slots: 32
+  use_auxiliary_features: true
+  aux_feature_fusion: gate
+  use_context_encoder: true
+  use_contextual_residual: true
+  direct_token_pooling: true
+  fusion_norm: true
+  branch_fusion: sum
+  num_labels: TBD
+
+training:
+  batch_size: 32
+  learning_rate: 2.0e-5
+  epochs: 10
+  warmup_ratio: 0.1
+  seed: 42
+  output_dir: checkpoints/crossplatform_android
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - macro_f1

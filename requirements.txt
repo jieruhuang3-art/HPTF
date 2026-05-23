@@ -1,0 +1,11 @@
+torch>=1.0
+numpy
+pandas
+scikit-learn
+tqdm
+pyyaml
+matplotlib
+seaborn
+scapy
+six>=1.12.0
+packaging

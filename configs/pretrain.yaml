@@ -1,0 +1,24 @@
+data:
+  train_path: data/processed/pretrain_train.tsv
+  valid_path: data/processed/pretrain_valid.tsv
+  vocab_path: data/processed/vocab.txt
+
+model:
+  name: HPTF
+  config_path: configs/bert_base_config.json
+  max_seq_length: 128
+  use_auxiliary_features: true
+  aux_feature_fusion: gate
+
+pretraining:
+  mask_probability: 0.15
+  lambda_time: 0.2
+  lambda_length: 0.2
+
+training:
+  batch_size: 32
+  learning_rate: 2.0e-5
+  epochs: 10
+  warmup_ratio: 0.1
+  seed: 42
+  output_dir: checkpoints/pretrain
