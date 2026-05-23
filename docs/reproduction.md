@@ -1,6 +1,6 @@
 # Reproduction Guide
 
-This guide describes how to reproduce the main training and evaluation pipeline of HPTF.
+This guide describes the main training and evaluation pipeline of HPTF.
 
 ## 1. Environment Setup
 

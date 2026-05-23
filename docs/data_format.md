@@ -11,5 +11,3 @@ label	text_a	delta_ts	pkt_len	packet_start
 - `delta_ts`: inter-arrival time sequence aligned with the token sequence.
 - `pkt_len`: packet length sequence aligned with the token sequence.
 - `packet_start`: packet boundary indicator sequence.
-
-Optional metadata columns such as `source_file`, `flow_id`, and `window_start` can be used for dataset tracing.

@@ -10,20 +10,20 @@ HPTF 是一种面向加密流量分类的层级流量表示学习框架。该方
 
 ## Highlights
 
-- Packet-aware encrypted traffic representation.
-- Hierarchical modeling of token context, intra-packet structure, and inter-packet temporal dependency.
-- Gated fusion of inter-arrival time and packet length features.
-- Unified pre-training and fine-tuning pipeline for encrypted traffic classification.
+- Packet-aware encrypted traffic representation
+- Hierarchical modeling of token context, intra-packet structure, and inter-packet temporal dependency
+- Gated fusion of inter-arrival time and packet length features
+- Unified pre-training and fine-tuning pipeline for encrypted traffic classification
 
 ## Framework
 
 ### 1. Data Preprocessing
 
-- Flow aggregation
-- Sliding-window packet segmentation
-- Traffic tokenization
-- Packet boundary construction
-- Time-length feature construction
+1.1 Flow aggregation  
+1.2 Sliding-window packet segmentation  
+1.3 Traffic tokenization  
+1.4 Packet boundary construction  
+1.5 Time-length feature construction  
 
 ### 2. Self-supervised Pre-training
 
@@ -31,9 +31,9 @@ HPTF uses multi-objective pre-training to learn contextual token representations
 
 Pre-training objectives:
 
-- Masked Token Prediction
-- Inter-arrival Time Prediction
-- Packet Length Prediction
+2.1 Masked Token Prediction  
+2.2 Inter-arrival Time Prediction  
+2.3 Packet Length Prediction  
 
 Loss:
 
@@ -43,18 +43,18 @@ L_pre = L_MLM + lambda_t L_time + lambda_l L_len
 
 ### 3. HPTF Encoder
 
-Core modules:
-
-- Traffic Token Embedding
-- Contextual Traffic Transformer Encoder
-- Gated Side-channel Feature Fusion
-- Intra-packet Field-axis Transformer Encoder
-- Inter-packet Temporal Transformer Encoder
-- Multi-branch Representation Aggregation
+3.1 Traffic Token Embedding  
+3.2 Contextual Traffic Transformer Encoder  
+3.3 Gated Side-channel Feature Fusion  
+3.4 Intra-packet Field-axis Transformer Encoder  
+3.5 Inter-packet Temporal Transformer Encoder  
+3.6 Multi-branch Representation Aggregation  
 
 ### 4. Supervised Fine-tuning
 
-The learned flow-level representation is fed into a classification head and optimized with cross-entropy loss for downstream encrypted traffic classification.
+4.1 Flow-level representation  
+4.2 Classification head  
+4.3 Cross-entropy optimization  
 
 ## Installation
 
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 
 ## Data Preparation
 
-Please prepare encrypted traffic datasets in PCAP or TSV format and organize them under the `data` directory. The preprocessing script converts raw traffic flows into packet-aware traffic token sequences with auxiliary time-length features.
+Prepare encrypted traffic datasets in PCAP or TSV format and organize them under the `data` directory. The preprocessing script converts traffic flows into packet-aware token sequences with time-length features.
 
 Example datasets:
 
@@ -99,7 +99,7 @@ bash scripts/finetune_all.sh
 bash scripts/evaluate.sh
 ```
 
-The evaluation reports Accuracy, Precision, Recall, and Macro-F1.
+Metrics: Accuracy, Precision, Recall, Macro-F1.
 
 ## Ablation Study
 
@@ -118,7 +118,7 @@ bash scripts/run_ablation_tor.sh
 
 ## Results
 
-HPTF achieves competitive performance across multiple encrypted traffic classification benchmarks. The results show that hierarchical packet-temporal modeling and gated time-length feature fusion improve the representation ability of encrypted traffic, especially on TLS service classification, anonymous traffic classification, VPN/non-VPN traffic classification, and mobile application traffic classification tasks.
+HPTF achieves competitive performance across multiple encrypted traffic classification benchmarks. The results show that hierarchical packet-temporal modeling and gated time-length feature fusion improve the representation ability of encrypted traffic on TLS service classification, anonymous traffic classification, VPN/non-VPN traffic classification, and mobile application traffic classification tasks.
 
 Performance may vary across datasets due to platform-specific traffic behavior and distribution shifts.
 

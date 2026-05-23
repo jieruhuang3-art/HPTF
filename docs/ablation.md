@@ -16,7 +16,7 @@ This ablation verifies the effect of gated fusion for time-length side-channel f
 
 ## Time-Length Side-channel Features
 
-This ablation verifies the auxiliary contribution of inter-arrival time and packet length features. These transport-level cues can remain informative even when payload content is encrypted.
+This ablation verifies the auxiliary contribution of inter-arrival time and packet length features. These transport-level cues can remain informative when payload content is encrypted.
 
 ## Multi-objective Pre-training
 

@@ -1,6 +1,6 @@
 # Internal Maintenance Notes
 
-This file is for repository maintainers. It is not part of the main user-facing reproduction guide.
+This file is for repository maintainers. It is not part of the main user-facing documentation.
 
 ## Public Documentation
 
@@ -13,5 +13,5 @@ This file is for repository maintainers. It is not part of the main user-facing 
 ## Maintenance Notes
 
 - Keep public documentation concise and method-oriented.
-- Keep implementation details in code comments or developer notes when needed.
-- Avoid expanding the README into a project audit or engineering report.
+- Keep implementation notes outside the README when they are not needed by users.
+- Avoid expanding public documentation into a project audit or engineering report.
