@@ -1,8 +1,7 @@
 # GitHub Release Checklist
 
-- README is updated.
+- README is concise and method-oriented.
 - Installation commands are verified.
-- Training and evaluation entry points are available.
-- Documentation is consistent with the paper terminology.
-- Example commands are provided.
+- Pre-training, fine-tuning, and evaluation commands are available.
+- Documentation is consistent with HPTF terminology.
 - Citation and license are included.

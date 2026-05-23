@@ -6,7 +6,7 @@ Some modular files provide lightweight interfaces to the main HPTF implementatio
 
 | Paper Module | Implementation | Main Class / Function | Description |
 |---|---|---|---|
-| Traffic Token Embedding | `hptf/models/embeddings.py` | `str2embedding` | Builds traffic token embeddings used by the HPTF encoder. |
+| Traffic Token Embedding | `hptf/models/embeddings.py` | `str2embedding` | Builds traffic token embeddings used by the encoder. |
 | Contextual Traffic Transformer Encoder | `hptf/models/hptf_encoder.py` | `FlowSemMAEClassifier.encoder` | Models contextual dependencies among traffic tokens. |
 | Gated Side-channel Feature Fusion | `hptf/models/hptf_encoder.py` | `FlowSemMAEClassifier._fuse_aux_features` | Fuses inter-arrival time and packet length features with token embeddings. |
 | Intra-packet Field-axis Transformer Encoder | `hptf/models/hptf_encoder.py` | `FlowSemMAEClassifier.field_encoder` | Encodes local token structures inside each packet. |

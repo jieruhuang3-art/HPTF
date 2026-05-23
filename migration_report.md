@@ -1,22 +1,17 @@
 # Internal Maintenance Notes
 
-This file records repository maintenance notes for developers. It is not required for the main paper reproduction workflow.
+This file is for repository maintainers. It is not part of the main user-facing reproduction guide.
 
-## Current Public Entry Points
+## Public Documentation
 
-- `README.md`: public project overview.
-- `docs/model_overview.md`: HPTF method summary.
-- `docs/reproduction.md`: reproduction guide.
-- `docs/ablation.md`: ablation-study description.
-- `docs/code_mapping.md`: concise mapping from paper modules to implementation components.
+- `README.md`: project overview and quick-start commands.
+- `docs/model_overview.md`: method summary.
+- `docs/reproduction.md`: reproduction workflow.
+- `docs/ablation.md`: ablation study description.
+- `docs/code_mapping.md`: module-to-code mapping.
 
-## Implementation Notes
+## Maintenance Notes
 
-- The HPTF model implementation is centered on `FlowSemMAEClassifier`.
-- Model-facing helper files under `hptf/models/` provide lightweight modular interfaces.
-- Training, pre-training, and evaluation entry points are under `hptf/training/` and `hptf/evaluation/`.
-
-## Release Notes
-
-- Public documentation is written from the HPTF method perspective.
-- Detailed engineering migration history is intentionally omitted from the README.
+- Keep public documentation concise and method-oriented.
+- Keep implementation details in code comments or developer notes when needed.
+- Avoid expanding the README into a project audit or engineering report.

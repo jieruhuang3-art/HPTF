@@ -12,43 +12,41 @@ pip install -r requirements.txt
 
 ## 2. Data Preparation
 
-Prepare PCAP or TSV files and convert them into packet-aware traffic token sequences.
+Prepare PCAP or TSV files and convert them into packet-aware traffic token sequences with packet boundary, inter-arrival time, and packet length features.
 
 ```bash
 bash scripts/preprocess.sh
 ```
 
-The expected processed samples contain traffic tokens, packet-boundary indicators, inter-arrival time features, packet length features, and class labels.
-
 ## 3. Pre-training
+
+Run self-supervised pre-training with masked token prediction and time-length behavior prediction.
 
 ```bash
 bash scripts/pretrain.sh
 ```
 
-The pre-training stage optimizes masked token prediction, inter-arrival time prediction, and packet length prediction.
-
 ## 4. Fine-tuning
+
+Fine-tune HPTF on labeled encrypted traffic classification datasets.
 
 ```bash
 bash scripts/finetune_tor.sh
 bash scripts/finetune_all.sh
 ```
 
-The fine-tuning stage trains HPTF for supervised encrypted traffic classification.
-
 ## 5. Evaluation
+
+Evaluate the fine-tuned model with standard classification metrics.
 
 ```bash
 bash scripts/evaluate.sh
 ```
 
-The evaluation stage reports Accuracy, Precision, Recall, and Macro-F1.
-
 ## 6. Ablation Study
+
+Run component-level ablation experiments for HPTF.
 
 ```bash
 bash scripts/run_ablation_tor.sh
 ```
-
-The ablation study evaluates the contribution of major HPTF components.

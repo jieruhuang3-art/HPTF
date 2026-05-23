@@ -1,38 +1,60 @@
 # HPTF: Hierarchical Packet-Temporal Fusion for Encrypted Traffic Classification
 
-## Overview
+HPTF is a hierarchical traffic representation learning framework for encrypted traffic classification. It represents encrypted traffic as packet-aware token sequences and jointly models contextual token dependencies, intra-packet local structures, inter-packet temporal dependencies, and time-length side-channel features.
 
-HPTF is a hierarchical traffic representation learning framework for encrypted traffic classification. It organizes encrypted traffic into packet-aware token sequences and jointly models contextual token dependencies, intra-packet local structures, inter-packet temporal dependencies, and time-length side-channel features. The framework supports self-supervised pre-training and supervised fine-tuning for encrypted traffic classification tasks.
+This repository provides the implementation of HPTF, including data preprocessing, self-supervised pre-training, supervised fine-tuning, evaluation, and ablation study utilities.
 
-HPTF 是一种面向加密流量分类的层级流量表示学习框架。该方法将加密流量组织为具备 packet 边界感知的 token 序列，并联合建模流量 token 上下文、包内局部结构、包间时序依赖以及时间—长度传输侧信道特征。该仓库提供 HPTF 的预训练、监督微调和评估流程，用于论文方法复现。
+HPTF 是一种面向加密流量分类的层级流量表示学习框架。该方法将加密流量表示为具有 packet 边界感知的 token 序列，并联合建模流量 token 上下文、包内局部结构、包间时序依赖以及时间—长度传输侧信道特征。
 
-Flat token sequences are limited in distinguishing intra-packet structures and inter-packet temporal dependencies. Time-length side-channel features provide useful transport-level cues for encrypted traffic classification. HPTF addresses these issues through hierarchical packet-temporal modeling and gated feature fusion.
+本仓库提供 HPTF 的数据预处理、预训练、监督微调、评估和消融实验相关代码，用于加密流量分类任务复现。
+
+## Highlights
+
+- Packet-aware encrypted traffic representation.
+- Hierarchical modeling of token context, intra-packet structure, and inter-packet temporal dependency.
+- Gated fusion of inter-arrival time and packet length features.
+- Unified pre-training and fine-tuning pipeline for encrypted traffic classification.
 
 ## Framework
 
-1. Data Preprocessing
-   - Flow aggregation
-   - Sliding-window packet segmentation
-   - Traffic tokenization
-   - Packet boundary and time-length feature construction
+### 1. Data Preprocessing
 
-2. Self-supervised Pre-training
-   - Masked token prediction
-   - Inter-arrival time prediction
-   - Packet length prediction
+- Flow aggregation
+- Sliding-window packet segmentation
+- Traffic tokenization
+- Packet boundary construction
+- Time-length feature construction
 
-3. HPTF Encoder
-   - Traffic token embedding
-   - Contextual Traffic Transformer Encoder
-   - Gated Side-channel Feature Fusion
-   - Intra-packet Field-axis Transformer Encoder
-   - Inter-packet Temporal Transformer Encoder
-   - Multi-branch Representation Aggregation
+### 2. Self-supervised Pre-training
 
-4. Supervised Fine-tuning
-   - Flow-level representation
-   - Classification head
-   - Cross-entropy optimization
+HPTF uses multi-objective pre-training to learn contextual token representations and transport behavior priors.
+
+Pre-training objectives:
+
+- Masked Token Prediction
+- Inter-arrival Time Prediction
+- Packet Length Prediction
+
+Loss:
+
+```text
+L_pre = L_MLM + lambda_t L_time + lambda_l L_len
+```
+
+### 3. HPTF Encoder
+
+Core modules:
+
+- Traffic Token Embedding
+- Contextual Traffic Transformer Encoder
+- Gated Side-channel Feature Fusion
+- Intra-packet Field-axis Transformer Encoder
+- Inter-packet Temporal Transformer Encoder
+- Multi-branch Representation Aggregation
+
+### 4. Supervised Fine-tuning
+
+The learned flow-level representation is fed into a classification head and optimized with cross-entropy loss for downstream encrypted traffic classification.
 
 ## Installation
 
@@ -64,12 +86,6 @@ bash scripts/preprocess.sh
 bash scripts/pretrain.sh
 ```
 
-The self-supervised objective combines masked token prediction and time-length behavior prediction:
-
-```text
-L_pre = L_MLM + lambda_t L_time + lambda_l L_len
-```
-
 ## Fine-tuning
 
 ```bash
@@ -83,11 +99,11 @@ bash scripts/finetune_all.sh
 bash scripts/evaluate.sh
 ```
 
-Evaluation metrics include Accuracy, Precision, Recall, and Macro-F1.
+The evaluation reports Accuracy, Precision, Recall, and Macro-F1.
 
 ## Ablation Study
 
-The ablation settings are designed to analyze the contribution of each major component in HPTF:
+The ablation settings are designed to analyze the contribution of each major component in HPTF.
 
 - w/o Intra-packet Field-axis Transformer Encoder
 - w/o Inter-packet Temporal Transformer Encoder
@@ -105,10 +121,6 @@ bash scripts/run_ablation_tor.sh
 HPTF achieves competitive performance across multiple encrypted traffic classification benchmarks. The results show that hierarchical packet-temporal modeling and gated time-length feature fusion improve the representation ability of encrypted traffic, especially on TLS service classification, anonymous traffic classification, VPN/non-VPN traffic classification, and mobile application traffic classification tasks.
 
 Performance may vary across datasets due to platform-specific traffic behavior and distribution shifts.
-
-## Code Mapping
-
-The correspondence between paper modules and implementation components is summarized in `docs/code_mapping.md`.
 
 ## Citation
 
