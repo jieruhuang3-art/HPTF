@@ -1,27 +1,27 @@
 # Ablation Study
 
-The ablation study is designed to analyze the contribution of the main HPTF components.
+The ablation study analyzes the contribution of the main HPTF components.
 
 ## Intra-packet Field-axis Transformer Encoder
 
-This ablation verifies the role of intra-packet local structure modeling. It studies whether token organization within the same packet contributes to flow-level representation learning.
+This setting evaluates the effect of modeling local token structures inside each packet.
 
 ## Inter-packet Temporal Transformer Encoder
 
-This ablation verifies the role of inter-packet temporal dependency modeling. It studies whether packet-level sequential behavior improves encrypted traffic classification.
+This setting evaluates the effect of modeling temporal dependencies across packet representations.
 
 ## Gated Side-channel Feature Fusion
 
-This ablation verifies the effect of gated fusion for time-length side-channel features. It evaluates whether adaptive feature injection improves the use of inter-arrival time and packet length information.
+This setting evaluates the effect of adaptive fusion for inter-arrival time and packet length features.
 
 ## Time-Length Side-channel Features
 
-This ablation verifies the auxiliary contribution of inter-arrival time and packet length features. These transport-level cues can remain informative when payload content is encrypted.
+This setting evaluates the auxiliary contribution of transport-level time and length information.
 
 ## Multi-objective Pre-training
 
-This ablation verifies the effect of pre-training on token context and transport behavior prior learning.
+This setting evaluates the benefit of learning contextual token representations and transport behavior priors before supervised fine-tuning.
 
 ## Contextual Encoder and Residual Path
 
-This ablation verifies the contribution of global contextual modeling and residual representation paths to stable flow-level representation learning.
+This setting evaluates the role of global contextual modeling and residual representation paths in stable flow-level representation learning.

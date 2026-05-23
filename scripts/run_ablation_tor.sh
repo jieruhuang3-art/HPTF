@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # TOR ablation study script for HPTF.
-# Please adjust the configuration according to the target ablation setting.
+# Adjust the configuration for the target ablation setting.
 set -e
 
 python -m hptf.training.finetune --config configs/finetune_tor.yaml --flowsem_no_field_axis_transformer

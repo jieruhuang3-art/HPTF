@@ -4,4 +4,5 @@
 - Installation commands are verified.
 - Pre-training, fine-tuning, and evaluation commands are available.
 - Documentation is consistent with HPTF terminology.
+- Example commands are provided.
 - Citation and license are included.
