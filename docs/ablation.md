@@ -1,33 +1,27 @@
 # Ablation Study
 
-This document explains the TOR ablation items used in the paper and the support status in the migrated codebase.
+The ablation study is designed to analyze the contribution of the main HPTF components.
 
-## TOR Ablation Items
+## Intra-packet Field-axis Transformer Encoder
 
-1. w/o Intra-packet Field-axis Transformer Encoder
-   - Paper meaning: verifies whether modeling local field/token arrangements inside each packet improves flow representation.
-   - Direct source switch found: `--flowsem_no_field_axis_transformer`.
+This ablation evaluates the role of local structure modeling within each packet. Removing this component tests whether packet-internal token organization contributes to discriminative flow representations.
 
-2. w/o Inter-packet Temporal Transformer Encoder
-   - Paper meaning: verifies whether packet-to-packet temporal dependency modeling improves classification.
-   - Direct source switch found: `--flowsem_no_temporal_transformer`.
+## Inter-packet Temporal Transformer Encoder
 
-3. w/o Gated Side-channel Feature Fusion
-   - Paper meaning: verifies whether the gate helps adaptive fusion of inter-arrival time and packet length side-channel features.
-   - No exact direct source switch named `remove_gated_fusion` was found. The source supports `--aux_feature_fusion {add,gate,cross_attention}`.
+This ablation evaluates the role of temporal dependency modeling across packets. Removing this component tests whether packet-level sequence dynamics improve encrypted traffic classification.
 
-4. w/o Time-Length Side-channel Features
-   - Paper meaning: verifies whether inter-arrival time and packet length information provide useful auxiliary transport behavior.
-   - No exact direct source switch named `remove_time_length_features` was found. Auxiliary features are enabled by `--use_aux_features`.
+## Gated Side-channel Feature Fusion
 
-5. w/o Multi-objective Masked Pre-training
-   - Paper meaning: verifies whether joint token-context and transport-behavior pre-training improves downstream fine-tuning.
-   - Partial source support exists: pre-training has `--disable_mlm_loss`; fine-tuning without pretraining can be represented by omitting `--pretrained_model_path`.
+This ablation evaluates the effect of adaptively fusing time-length transport side-channel features. The gate controls how inter-arrival time and packet length information are injected into token representations.
 
-6. w/o Contextual Encoder and Residual Path
-   - Paper meaning: verifies whether global contextual encoding and residual CLS fusion stabilize flow-level representation.
-   - No single direct source switch was found. Contextual encoder and CLS residual are opt-in flags: `--flowsem_use_context_encoder` and `--flowsem_cls_residual`.
+## Time-Length Side-channel Features
 
-## Important Note
+This ablation evaluates the auxiliary contribution of inter-arrival time and packet length. These features provide observable transport-level cues even when payload content is encrypted.
 
-The current repository does not fabricate a nonexistent `--ablation` parameter. If an ablation does not have a direct code switch, researchers should identify the corresponding module in `docs/code_mapping.md` and manually implement or extend the code in a transparent, documented way.
+## Multi-objective Pre-training
+
+This ablation evaluates whether self-supervised pre-training helps HPTF learn token context and transport behavior priors before supervised fine-tuning.
+
+## Contextual Encoder and Residual Path
+
+This ablation evaluates the role of global contextual modeling and residual representation paths in producing stable flow-level representations.
