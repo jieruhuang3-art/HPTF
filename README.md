@@ -4,13 +4,6 @@ HPTF is a hierarchical traffic representation learning framework for encrypted t
 
 This repository provides the implementation of HPTF, including data preprocessing, self-supervised pre-training, supervised fine-tuning, evaluation, and ablation study utilities.
 
-## Highlights
-
-- Packet-aware encrypted traffic representation
-- Hierarchical modeling of token context, intra-packet structure, and inter-packet temporal dependency
-- Gated fusion of inter-arrival time and packet length features
-- Unified pre-training and fine-tuning pipeline for encrypted traffic classification
-
 ## Framework
 
 ### 1. Data Preprocessing
@@ -50,10 +43,38 @@ L_pre = L_MLM + lambda_t L_time + lambda_l L_len
 
 ## Installation
 
+Clone the repository and create a Python environment:
+
 ```bash
+git clone git@github.com:jieruhuang3-art/HPTF.git
+cd HPTF
 conda create -n hptf python=3.9 -y
 conda activate hptf
+python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+Verify that the command-line entry points are available:
+
+```bash
+python -m hptf.training.pretrain --help
+python -m hptf.training.finetune --help
+python -m hptf.evaluation.evaluate --help
+```
+
+## Repository Layout
+
+```text
+HPTF/
+├── configs/          # experiment configuration files
+├── data/             # data workspace
+├── docs/             # documentation
+├── hptf/             # HPTF source package
+├── scripts/          # runnable scripts
+├── results/          # evaluation outputs
+├── README.md
+├── requirements.txt
+└── LICENSE
 ```
 
 ## Data Preparation
@@ -107,15 +128,6 @@ The ablation study analyzes the contribution of the main HPTF components:
 ```bash
 bash scripts/run_ablation_tor.sh
 ```
-
-## Repository Layout
-
-- `hptf/`: HPTF package for modeling, data processing, training, and evaluation
-- `configs/`: experiment configuration files
-- `scripts/`: runnable command-line scripts
-- `docs/`: documentation for the model, data format, reproduction, and ablation study
-- `data/`: workspace for traffic datasets and processed samples
-- `results/`: workspace for evaluation outputs
 
 ## Results
 
