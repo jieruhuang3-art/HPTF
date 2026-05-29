@@ -31,7 +31,7 @@ L_pre = L_MLM + lambda_t L_time + lambda_l L_len
 3.1 Traffic Token Embedding  
 3.2 Contextual Traffic Transformer Encoder  
 3.3 Gated Side-channel Feature Fusion  
-3.4 Intra-packet Field-axis Transformer Encoder  
+3.4 Intra-packet token-axis Transformer Encoder  
 3.5 Inter-packet Temporal Transformer Encoder  
 3.6 Multi-branch Representation Aggregation  
 
@@ -118,7 +118,7 @@ Reported metrics include Accuracy, Precision, Recall, and Macro-F1.
 
 The ablation study analyzes the contribution of the main HPTF components:
 
-- w/o Intra-packet Field-axis Transformer Encoder
+- w/o Intra-packet token-axis Transformer Encoder
 - w/o Inter-packet Temporal Transformer Encoder
 - w/o Gated Side-channel Feature Fusion
 - w/o Time-Length Side-channel Features
